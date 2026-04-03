@@ -4,7 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Kutraleeswaran NH — Portfolio</title>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:ital,wght@0,300;0,400;1,300&family=Fraunces:ital,opsz,wght@0,9..144,300;1,9..144,200&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@300;400&family=Fraunces:ital,opsz,wght@0,9..144,300;1,9..144,200&display=swap" rel="stylesheet">
 <style>
   :root {
     --bg: #0a0a0f;
@@ -39,6 +41,7 @@
     transform: translate(-50%, -50%);
     transition: transform 0.1s, width 0.2s, height 0.2s, background 0.2s;
     mix-blend-mode: screen;
+    left: -100px; top: -100px;
   }
   .cursor-ring {
     position: fixed;
@@ -49,8 +52,10 @@
     z-index: 9998;
     transform: translate(-50%, -50%);
     transition: transform 0.18s ease, width 0.25s, height 0.25s, border-color 0.2s;
+    left: -100px; top: -100px;
   }
   body:hover .cursor { opacity: 1; }
+  a, button { cursor: pointer; }
 
   /* Grid background */
   body::before {
@@ -143,6 +148,8 @@
     text-transform: uppercase;
     color: var(--accent);
     margin-bottom: 2.5rem;
+  }
+  .js-ready .hero-tag {
     opacity: 0;
     animation: fadeup 0.8s 0.2s forwards;
   }
@@ -160,6 +167,8 @@
     line-height: 1.0;
     letter-spacing: -0.02em;
     margin-bottom: 0.2rem;
+  }
+  .js-ready .hero-name {
     opacity: 0;
     animation: fadeup 0.9s 0.35s forwards;
   }
@@ -174,6 +183,8 @@
     color: var(--muted);
     letter-spacing: 0.08em;
     margin: 1.5rem 0 3rem;
+  }
+  .js-ready .hero-sub {
     opacity: 0;
     animation: fadeup 0.9s 0.5s forwards;
   }
@@ -181,6 +192,8 @@
   .hero-cta {
     display: flex;
     gap: 1.2rem;
+  }
+  .js-ready .hero-cta {
     opacity: 0;
     animation: fadeup 0.9s 0.65s forwards;
   }
@@ -221,8 +234,11 @@
     letter-spacing: 0.15em;
     text-transform: uppercase;
     color: var(--muted);
+  }
+  .js-ready .hero-scroll {
     opacity: 0;
     animation: fadeup 1s 1s forwards;
+  }
   }
   .scroll-line {
     width: 40px; height: 1px;
@@ -385,6 +401,14 @@
     overflow: hidden;
     display: flex;
     flex-direction: column;
+    cursor: pointer;
+  }
+  /* Stretched link: makes the entire card clickable via the .project-link */
+  .project-link.stretched::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 1;
   }
   .project-card:first-child {
     grid-column: 1 / -1;
@@ -570,13 +594,13 @@
   }
   footer span { color: var(--accent); opacity: 0.7; }
 
-  /* Scroll reveal */
-  .reveal {
+  /* Scroll reveal — only hidden when JS is ready, avoids blank page if JS/observer fails */
+  .js-ready .reveal {
     opacity: 0;
     transform: translateY(30px);
     transition: opacity 0.8s ease, transform 0.8s ease;
   }
-  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .js-ready .reveal.visible { opacity: 1; transform: translateY(0); }
 
   @media (max-width: 900px) {
     nav { padding: 1.2rem 1.5rem; }
@@ -740,7 +764,7 @@
           <span class="project-tag">Python</span>
           <span class="project-tag">Keras</span>
         </div>
-        <a href="https://github.com/leeIITM/AI-X-HORIZON" target="_blank" rel="noopener" class="project-link">
+        <a href="https://github.com/leeIITM/AI-X-HORIZON" target="_blank" rel="noopener" class="project-link stretched">
           View on GitHub
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg>
         </a>
@@ -767,7 +791,7 @@
         <span class="project-tag">Graph Transformer</span>
         <span class="project-tag">Jupyter</span>
       </div>
-      <a href="https://github.com/leeIITM/MVTS" target="_blank" rel="noopener" class="project-link">
+      <a href="https://github.com/leeIITM/MVTS" target="_blank" rel="noopener" class="project-link stretched">
         View on GitHub
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg>
       </a>
@@ -787,7 +811,7 @@
         <span class="project-tag">Linear Regression</span>
         <span class="project-tag">Aerospace</span>
       </div>
-      <a href="https://github.com/leeIITM/AS2101-Intro_to_aero_assignments" target="_blank" rel="noopener" class="project-link">
+      <a href="https://github.com/leeIITM/AS2101-Intro_to_aero_assignments" target="_blank" rel="noopener" class="project-link stretched">
         View on GitHub
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg>
       </a>
@@ -812,7 +836,7 @@
           </div>
           <span class="contact-link-text">github.com/leeIITM</span>
         </a>
-        <a href="mailto:kutraleeswaran@iitm.ac.in" class="contact-link">
+        <a href="/cdn-cgi/l/email-protection#b6ddc3c2c4d7dad3d3c5c1d7c4d7d8f6dfdfc2db98d7d598dfd8" class="contact-link">
           <div class="contact-link-icon">✉</div>
           <span class="contact-link-text">@iitm.ac.in</span>
         </a>
@@ -848,7 +872,10 @@
 </footer>
 
 <script>
-  // Cursor
+  // Activate animations only after JS loads — prevents invisible content if JS fails
+  document.body.classList.add('js-ready');
+
+  // Custom cursor (desktop only)
   const cursor = document.getElementById('cursor');
   const ring = document.getElementById('cursorRing');
   let mx = 0, my = 0, rx = 0, ry = 0;
@@ -856,11 +883,11 @@
   function animRing() { rx += (mx - rx) * 0.12; ry += (my - ry) * 0.12; ring.style.left = rx + 'px'; ring.style.top = ry + 'px'; requestAnimationFrame(animRing); }
   animRing();
 
-  // Scroll reveal
+  // Scroll reveal — threshold 0 so it fires as soon as element enters viewport
   const reveals = document.querySelectorAll('.reveal');
   const observer = new IntersectionObserver(entries => {
-    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
-  }, { threshold: 0.12 });
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+  }, { threshold: 0, rootMargin: '0px 0px -20px 0px' });
   reveals.forEach(el => observer.observe(el));
 </script>
 </body>
